@@ -67,32 +67,37 @@ public class Reverseify {
 		}
 	}
 	
+	public static int[] getInt(Scanner sc) {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		System.out.println("Enter an integer (enter x to stop): ");
+		
+		while(true){
+			String input = sc.next();
+			if(input.equals("x")) {
+				break;
+			} else {
+				int n = Integer.parseInt(input);
+				list.add(n);
+			}
+		}
+		
+		int[] listArr = new int[list.size()];
+		
+		for(int i = 0; i <= list.size()-1; i++) {
+			listArr[i] = list.get(i);
+			System.out.print(list.get(i) + " ");
+		}
+		System.out.println();
+		return listArr;
+	}
+	
 	public static void getOption(int opt) {
 		Scanner sc = new Scanner(System.in);
 		try {
 			switch(opt) {
 				case 1:
-					LinkedList<Integer> list = new LinkedList<Integer>();
-					System.out.println("Enter an integer (enter x to stop): ");
-					
-					while(true){
-						String input = sc.next();
-						if(input.equals("x")) {
-							break;
-						} else {
-							int n = Integer.parseInt(input);
-							list.add(n);
-						}
-					}
-					
-					int[] listArr = new int[list.size()];
-					
-					for(int i = 0; i <= list.size()-1; i++) {
-						listArr[i] = list.get(i);
-						System.out.print(list.get(i) + " ");
-					}
-					System.out.println();
-					int[] reverse = reverse(listArr);
+					int[] integer = getInt(sc);
+					int[] reverse = reverse(integer);
 					printInt(reverse);
 					System.out.println();
 					break;
@@ -105,7 +110,7 @@ public class Reverseify {
 					break;
 			}
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			System.out.println("Illegal argument: "+ e.getMessage() + " Please choose a correct value!");
 		}
 	}
 	
